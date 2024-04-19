@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LED Control</title>
+</head>
+<body>
+
+<h1>LED Control</h1>
+<button onclick="turnOn()">Turn On</button>
+<button onclick="turnOff()">Turn Off</button>
+
+<script>
+function turnOn() {
+  fetch('http://192.168.137.238/turn-on') 
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to turn on LED');
+      }
+      return response.text();
+    })
+    .then(data => {
+      console.log(data); // Log response
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+function turnOff() {
+  fetch('http://192.168.137.238/turn-off') 
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to turn off LED');
+      }
+      return response.text();
+    })
+    .then(data => {
+      console.log(data); // Log response
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+</script>
+
+</body>
+</html>
